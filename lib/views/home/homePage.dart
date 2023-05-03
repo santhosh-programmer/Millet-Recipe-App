@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
           }
         },
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(15, 30, 15, 15),
+          padding: const EdgeInsets.fromLTRB(15, 40, 15, 15),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

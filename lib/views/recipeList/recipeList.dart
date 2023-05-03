@@ -27,7 +27,7 @@ class _RecipeListState extends State<RecipeList> {
           }
         },
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(10, 30, 10, 15),
+          padding: const EdgeInsets.fromLTRB(10, 40, 10, 15),
           child: Column(
             children: [
               Text(
