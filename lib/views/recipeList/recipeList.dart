@@ -14,6 +14,7 @@ class RecipeList extends StatefulWidget {
 }
 
 class _RecipeListState extends State<RecipeList> {
+  int selectOption = 0;
   final TextEditingController _controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -54,22 +55,27 @@ class _RecipeListState extends State<RecipeList> {
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          selectOption = index;
+                          setState(() {
+                            selectOption;
+                          });
+                        },
                         child: Container(
                           decoration: BoxDecoration(
                             border: Border.all(
-                              color: Colors.pink,
+                              color: Colors.purple,
                             ),
                             borderRadius: BorderRadius.circular(5),
-                            color: const Color.fromARGB(183, 252, 228, 236),
+                            color: (selectOption == index) ? Colors.purple : const Color.fromARGB(28, 155, 39, 176),
                           ),
                           child: Padding(
                             padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
                             child: Center(
                               child: Text(
                                 options[index],
-                                style: const TextStyle(
-                                  color: Colors.pink,
+                                style: TextStyle(
+                                  color: (selectOption == index) ? Colors.white : Colors.purple,
                                 ),
                               ),
                             ),

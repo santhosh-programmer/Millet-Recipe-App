@@ -36,9 +36,17 @@ class _HomePageState extends State<HomePage> {
                   Container(
                     width: 100,
                     height: 40,
-                    color: Colors.amber,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.purple,
+                    ),
                     child: const Center(
-                      child: Text('LOGO'),
+                      child: Text(
+                        'LOGO',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
                   ),
                   const Expanded(
