@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:millet_recipe_app/views/home/homePage_constants.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
+import 'package:millet_recipe_app/views/auth/login_page.dart';
 import 'package:millet_recipe_app/views/favourites/favouritesPage.dart';
-import 'package:millet_recipe_app/views/profile/profilePage.dart';
+import 'package:millet_recipe_app/views/home/homePage_constants.dart';
 import 'package:millet_recipe_app/views/recipeList/recipeList.dart';
 import 'package:millet_recipe_app/widgets/searchBar.dart';
 
@@ -15,10 +15,12 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final TextEditingController _controller = TextEditingController();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       body: GestureDetector(
         onTap: () {
           FocusScopeNode currentFocus = FocusScope.of(context);
@@ -33,6 +35,19 @@ class _HomePageState extends State<HomePage> {
             children: [
               Row(
                 children: [
+                  IconButton(
+                    onPressed: () {
+                      _scaffoldKey.currentState!.openDrawer();
+                    },
+                    icon: const Icon(
+                      Icons.menu,
+                      color: Colors.black,
+                      size: 30,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
                   Container(
                     width: 100,
                     height: 40,
@@ -54,21 +69,14 @@ class _HomePageState extends State<HomePage> {
                   ),
                   IconButton(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const FavouritesPage()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const FavouritesPage()));
                     },
                     icon: const Icon(
                       Icons.favorite,
                       color: Colors.red,
-                      size: 30,
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfilePage()));
-                    },
-                    icon: const Icon(
-                      Icons.person_2_rounded,
-                      color: Colors.black,
                       size: 30,
                     ),
                   ),
@@ -105,7 +113,8 @@ class _HomePageState extends State<HomePage> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => RecipeList(milletName: milletName),
+                                builder: (context) =>
+                                    RecipeList(milletName: milletName),
                               ));
                         },
                         child: Card(
@@ -123,7 +132,8 @@ class _HomePageState extends State<HomePage> {
                                 width: double.infinity,
                                 height: 150,
                                 imageUrl: milletImageUrl!,
-                                imageBuilder: (context, imageProvider) => Container(
+                                imageBuilder: (context, imageProvider) =>
+                                    Container(
                                   decoration: BoxDecoration(
                                     //   borderRadius: BorderRadius.circular(10),
                                     image: DecorationImage(
@@ -174,6 +184,48 @@ class _HomePageState extends State<HomePage> {
               ),
             ],
           ),
+        ),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              child: Text(
+                'Millets Recipe',
+                style: TextStyle(color: Colors.white, fontSize: 28),
+              ),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+                image: DecorationImage(
+                  image: NetworkImage(
+                      "https://media.istockphoto.com/id/1162962131/photo/grains-and-millets-served-on-bowl-in-a-wooden-background.jpg?s=612x612&w=0&k=20&c=bl3xE6yBheomOvNP9C6t5WRwDXmGHDUQOooN9eAF57A="),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.person),
+              title: Text('My Profile'),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Settings'),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: Icon(Icons.logout),
+              title: Text('Logout'),
+              onTap: () {
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => Login()),
+                  (Route<dynamic> route) => false,
+                );
+              },
+            ),
+          ],
         ),
       ),
     );
