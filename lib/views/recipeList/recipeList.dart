@@ -32,6 +32,7 @@ class _RecipeListState extends State<RecipeList> {
     '1/2 cup chopped fresh cilantro',
     '2 limes, juiced'
   ];
+  List<Map<String, String>> recipeList2 = recipeList;
   int selectOption = 0;
   final TextEditingController _controller = TextEditingController();
   @override
@@ -77,6 +78,11 @@ class _RecipeListState extends State<RecipeList> {
                           selectOption = index;
                           setState(() {
                             selectOption;
+                            if (selectOption == 0) {
+                              recipeList2 = recipeList;
+                            } else {
+                              recipeList2 = recipeList.where((element) => element['category'] == options[selectOption]).toList();
+                            }
                           });
                         },
                         child: Container(
@@ -112,10 +118,9 @@ class _RecipeListState extends State<RecipeList> {
                   child: MasonryGridView.count(
                     physics: const BouncingScrollPhysics(),
                     crossAxisCount: 2,
-                    itemCount: recipeList.length,
+                    itemCount: recipeList2.length,
                     itemBuilder: (context, index) {
-                      final String recipeName = recipeList[index]['recipeName']!;
-                      final String recipeImageUrl = recipeList[index]['recipeImageUrl']!;
+                      final String recipeName = recipeList2[index]['recipeName']!;
 
                       return InkWell(
                         onTap: () {
@@ -130,7 +135,7 @@ class _RecipeListState extends State<RecipeList> {
                               children: [
                                 CachedNetworkImage(
                                   width: double.infinity,
-                                  imageUrl: recipeImageUrl,
+                                  imageUrl: recipeList2[index]['recipeImageUrl']!,
                                   placeholder: (context, url) {
                                     return const Center(
                                       child: CircularProgressIndicator(
