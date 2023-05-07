@@ -158,6 +158,7 @@ class _FavouritesPageState extends State<FavouritesPage> {
                                   child: InkWell(
                                     onTap: () {
                                       favList.removeAt(index);
+                                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Removed from Favourites')));
                                       setState(() {
                                         favList;
                                       });
