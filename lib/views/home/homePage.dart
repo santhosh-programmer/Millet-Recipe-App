@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
           }
         },
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(15, 40, 15, 15),
+          padding: const EdgeInsets.fromLTRB(15, 40, 15, 0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -45,8 +45,8 @@ class _HomePageState extends State<HomePage> {
                       size: 30,
                     ),
                   ),
-                  SizedBox(
-                    width: 20,
+                  const SizedBox(
+                    width: 10,
                   ),
                   Container(
                     width: 100,
@@ -69,10 +69,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   IconButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const FavouritesPage()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const FavouritesPage()));
                     },
                     icon: const Icon(
                       Icons.favorite,
@@ -113,8 +110,7 @@ class _HomePageState extends State<HomePage> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) =>
-                                    RecipeList(milletName: milletName),
+                                builder: (context) => RecipeList(milletName: milletName),
                               ));
                         },
                         child: Card(
@@ -132,8 +128,7 @@ class _HomePageState extends State<HomePage> {
                                 width: double.infinity,
                                 height: 150,
                                 imageUrl: milletImageUrl!,
-                                imageBuilder: (context, imageProvider) =>
-                                    Container(
+                                imageBuilder: (context, imageProvider) => Container(
                                   decoration: BoxDecoration(
                                     //   borderRadius: BorderRadius.circular(10),
                                     image: DecorationImage(
@@ -190,11 +185,7 @@ class _HomePageState extends State<HomePage> {
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            DrawerHeader(
-              child: Text(
-                'Millets Recipe',
-                style: TextStyle(color: Colors.white, fontSize: 28),
-              ),
+            const DrawerHeader(
               decoration: BoxDecoration(
                 color: Colors.blue,
                 image: DecorationImage(
@@ -203,24 +194,28 @@ class _HomePageState extends State<HomePage> {
                   fit: BoxFit.cover,
                 ),
               ),
+              child: Text(
+                'Millets Recipe',
+                style: TextStyle(color: Colors.white, fontSize: 28),
+              ),
             ),
             ListTile(
-              leading: Icon(Icons.person),
-              title: Text('My Profile'),
+              leading: const Icon(Icons.person),
+              title: const Text('My Profile'),
               onTap: () {},
             ),
             ListTile(
-              leading: Icon(Icons.settings),
-              title: Text('Settings'),
+              leading: const Icon(Icons.settings),
+              title: const Text('Settings'),
               onTap: () {},
             ),
             ListTile(
-              leading: Icon(Icons.logout),
-              title: Text('Logout'),
+              leading: const Icon(Icons.logout),
+              title: const Text('Logout'),
               onTap: () {
                 Navigator.pushAndRemoveUntil(
                   context,
-                  MaterialPageRoute(builder: (context) => Login()),
+                  MaterialPageRoute(builder: (context) => const Login()),
                   (Route<dynamic> route) => false,
                 );
               },

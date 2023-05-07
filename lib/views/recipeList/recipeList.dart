@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:millet_recipe_app/views/favourites/favList.dart';
+import 'package:millet_recipe_app/views/recipeDetail/recipeDetails.dart';
 import 'package:millet_recipe_app/views/recipeList/recipeList_constants.dart';
 import 'package:millet_recipe_app/widgets/searchBar.dart';
 
@@ -101,8 +101,13 @@ class _RecipeListState extends State<RecipeList> {
 
                       return InkWell(
                         onTap: () {
-                          // Navigator.push(context, MaterialPageRoute(builder: (context) => RecipeDetail(recipeName: recipeName)));
-                          favList.add({'recipeName': recipeName, 'recipeImageUrl': recipeImageUrl});
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => RecipeDetail(recipeName: recipeName),
+                            ),
+                          );
+                          // favList.add({'recipeName': recipeName, 'recipeImageUrl': recipeImageUrl});
                         },
                         child: Card(
                           elevation: 5,
