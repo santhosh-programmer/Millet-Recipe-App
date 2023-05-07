@@ -14,24 +14,6 @@ class RecipeList extends StatefulWidget {
 }
 
 class _RecipeListState extends State<RecipeList> {
-  List<String> ingredients = [
-    '1 cup millet',
-    '2 cups water',
-    '1/2 tsp salt',
-    '1 tbsp olive oil',
-    '1 onion, chopped',
-    '2 cloves garlic, minced',
-    '1 red bell pepper, chopped',
-    '1 green bell pepper, chopped',
-    '1 can diced tomatoes (14 oz)',
-    '1 tsp paprika',
-    '1 tsp cumin',
-    '1/2 tsp chili powder',
-    '1 can black beans (15 oz)',
-    '1 can corn (15 oz)',
-    '1/2 cup chopped fresh cilantro',
-    '2 limes, juiced'
-  ];
   List<Map<String, String>> recipeList2 = recipeList;
   int selectOption = 0;
   final TextEditingController _controller = TextEditingController();
@@ -125,7 +107,11 @@ class _RecipeListState extends State<RecipeList> {
                       return InkWell(
                         onTap: () {
                           Navigator.push(
-                              context, MaterialPageRoute(builder: (context) => RecipeDetail(recipeName: recipeName, ingredients: ingredients)));
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => RecipeDetail(recipeName: recipeName),
+                            ),
+                          );
                         },
                         child: Card(
                           elevation: 5,

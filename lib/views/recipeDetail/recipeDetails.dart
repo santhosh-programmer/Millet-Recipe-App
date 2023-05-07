@@ -7,15 +7,33 @@ import '../recipeList/recipeList_constants.dart';
 import 'package:video_player/video_player.dart';
 
 class RecipeDetail extends StatefulWidget {
-  const RecipeDetail({
+  RecipeDetail({
     Key? key,
     required this.recipeName,
-    required this.ingredients,
+    // required this.ingredients,
     this.image,
   }) : super(key: key);
 
   final String recipeName;
-  final List<String> ingredients;
+  // final List<String> ingredients;
+  List<String> ingredients = [
+    '1 cup millet',
+    '2 cups water',
+    '1/2 tsp salt',
+    '1 tbsp olive oil',
+    '1 onion, chopped',
+    '2 cloves garlic, minced',
+    '1 red bell pepper, chopped',
+    '1 green bell pepper, chopped',
+    '1 can diced tomatoes (14 oz)',
+    '1 tsp paprika',
+    '1 tsp cumin',
+    '1/2 tsp chili powder',
+    '1 can black beans (15 oz)',
+    '1 can corn (15 oz)',
+    '1/2 cup chopped fresh cilantro',
+    '2 limes, juiced'
+  ];
   final String? image;
 
   @override
