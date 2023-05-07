@@ -1,10 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:millet_recipe_app/views/about_page.dart';
 import 'package:millet_recipe_app/views/auth/login_page.dart';
 import 'package:millet_recipe_app/views/favourites/favouritesPage.dart';
 import 'package:millet_recipe_app/views/home/homePage_constants.dart';
 import 'package:millet_recipe_app/views/recipeList/recipeList.dart';
 import 'package:millet_recipe_app/widgets/searchBar.dart';
+
+import '../profile/profilePage.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -14,6 +17,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  String userName = 'Ram Kumar';
+  String emailId = 'ramkumar@gmail.com';
+  String password = 'ram@123';
+
   final TextEditingController _controller = TextEditingController();
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -45,7 +52,7 @@ class _HomePageState extends State<HomePage> {
                       size: 30,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 20,
                   ),
                   Container(
@@ -190,11 +197,7 @@ class _HomePageState extends State<HomePage> {
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            DrawerHeader(
-              child: Text(
-                'Millets Recipe',
-                style: TextStyle(color: Colors.white, fontSize: 28),
-              ),
+            const DrawerHeader(
               decoration: BoxDecoration(
                 color: Colors.blue,
                 image: DecorationImage(
@@ -203,24 +206,48 @@ class _HomePageState extends State<HomePage> {
                   fit: BoxFit.cover,
                 ),
               ),
+              child: Text(
+                'Millets Recipe',
+                style: TextStyle(color: Colors.white, fontSize: 28),
+              ),
             ),
             ListTile(
-              leading: Icon(Icons.person),
-              title: Text('My Profile'),
+              leading: const Icon(Icons.person),
+              title: const Text('My Profile'),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ProfilePage(
+                          userName: userName,
+                          userEmail: emailId,
+                          userPassword: password),
+                    ));
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.settings),
+              title: const Text('Settings'),
               onTap: () {},
             ),
             ListTile(
-              leading: Icon(Icons.settings),
-              title: Text('Settings'),
-              onTap: () {},
+              leading: const Icon(Icons.info),
+              title: const Text('About Us'),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const AboutPage(),
+                    ));
+              },
             ),
             ListTile(
-              leading: Icon(Icons.logout),
-              title: Text('Logout'),
+              leading: const Icon(Icons.logout),
+              title: const Text('Logout'),
               onTap: () {
                 Navigator.pushAndRemoveUntil(
                   context,
-                  MaterialPageRoute(builder: (context) => Login()),
+                  MaterialPageRoute(builder: (context) => const Login()),
                   (Route<dynamic> route) => false,
                 );
               },
