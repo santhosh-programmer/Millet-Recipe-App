@@ -46,7 +46,11 @@ class _FavouritesPageState extends State<FavouritesPage> {
                             context,
                             MaterialPageRoute(
                               builder: (context) => RecipeDetail(recipeName: recipeName),
-                            ));
+                            )).then((value) {
+                          setState(() {
+                            favList;
+                          });
+                        });
                       },
                       child: Stack(
                         alignment: (index % 2 == 0) ? Alignment.centerLeft : Alignment.centerRight,
