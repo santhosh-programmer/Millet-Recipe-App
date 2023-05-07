@@ -1,10 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:millet_recipe_app/views/about_page.dart';
 import 'package:millet_recipe_app/views/auth/login_page.dart';
 import 'package:millet_recipe_app/views/favourites/favouritesPage.dart';
 import 'package:millet_recipe_app/views/home/homePage_constants.dart';
 import 'package:millet_recipe_app/views/recipeList/recipeList.dart';
 import 'package:millet_recipe_app/widgets/searchBar.dart';
+
+import '../profile/profilePage.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -185,8 +188,8 @@ class _HomePageState extends State<HomePage> {
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            const DrawerHeader(
-              decoration: BoxDecoration(
+            DrawerHeader(
+              decoration: const BoxDecoration(
                 color: Colors.blue,
                 image: DecorationImage(
                   image: NetworkImage(
@@ -194,20 +197,46 @@ class _HomePageState extends State<HomePage> {
                   fit: BoxFit.cover,
                 ),
               ),
-              child: Text(
-                'Millets Recipe',
-                style: TextStyle(color: Colors.white, fontSize: 28),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: const [
+                  Text(
+                    'Welcome,',
+                    style: TextStyle(color: Colors.white, fontSize: 28),
+                  ),
+                  Text(
+                    'Tony Stark',
+                    style: TextStyle(color: Colors.white, fontSize: 28),
+                  ),
+                ],
               ),
             ),
             ListTile(
               leading: const Icon(Icons.person),
               title: const Text('My Profile'),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ProfilePage(),
+                    ));
+              },
             ),
             ListTile(
               leading: const Icon(Icons.settings),
               title: const Text('Settings'),
               onTap: () {},
+            ),
+            ListTile(
+              leading: const Icon(Icons.info),
+              title: const Text('About Us'),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const AboutPage(),
+                    ));
+              },
             ),
             ListTile(
               leading: const Icon(Icons.logout),

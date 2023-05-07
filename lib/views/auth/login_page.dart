@@ -12,6 +12,9 @@ class Login extends StatefulWidget {
 
 Color appColor = Colors.white;
 bool loading = false;
+String userName = 'Ram Kumar';
+String emailId = 'ramkumar@gmail.com';
+String password = 'ram@123';
 
 class _LoginState extends State<Login> {
   bool p = true;
