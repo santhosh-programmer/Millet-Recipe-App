@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:millet_recipe_app/views/recipeDetail/recipeDetails.dart';
+import 'package:millet_recipe_app/views/favourites/favList.dart';
 import 'package:millet_recipe_app/views/recipeList/recipeList_constants.dart';
 import 'package:millet_recipe_app/widgets/searchBar.dart';
 
@@ -97,10 +97,12 @@ class _RecipeListState extends State<RecipeList> {
                     itemCount: recipeList.length,
                     itemBuilder: (context, index) {
                       final String recipeName = recipeList[index]['recipeName']!;
+                      final String recipeImageUrl = recipeList[index]['recipeImageUrl']!;
 
                       return InkWell(
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => RecipeDetail(recipeName: recipeName)));
+                          // Navigator.push(context, MaterialPageRoute(builder: (context) => RecipeDetail(recipeName: recipeName)));
+                          favList.add({'recipeName': recipeName, 'recipeImageUrl': recipeImageUrl});
                         },
                         child: Card(
                           elevation: 5,
@@ -110,7 +112,7 @@ class _RecipeListState extends State<RecipeList> {
                               children: [
                                 CachedNetworkImage(
                                   width: double.infinity,
-                                  imageUrl: recipeList[index]['recipeImageUrl']!,
+                                  imageUrl: recipeImageUrl,
                                   placeholder: (context, url) {
                                     return const Center(
                                       child: CircularProgressIndicator(

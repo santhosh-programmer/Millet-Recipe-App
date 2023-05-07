@@ -10,9 +10,27 @@ class FavouritesPage extends StatefulWidget {
 class _FavouritesPageState extends State<FavouritesPage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('Favourites Page'),
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.fromLTRB(10, 40, 10, 0),
+        child: Column(
+          // crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Expanded(
+              child: Row(
+                children: const [
+                  Text(
+                    'Your Favourites',
+                    style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
