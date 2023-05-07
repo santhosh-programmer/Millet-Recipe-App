@@ -16,10 +16,8 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
+
 class _HomePageState extends State<HomePage> {
-  String userName = 'Ram Kumar';
-  String emailId = 'ramkumar@gmail.com';
-  String password = 'ram@123';
 
   final TextEditingController _controller = TextEditingController();
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -218,10 +216,7 @@ class _HomePageState extends State<HomePage> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => ProfilePage(
-                          userName: userName,
-                          userEmail: emailId,
-                          userPassword: password),
+                      builder: (context) => ProfilePage(),
                     ));
               },
             ),

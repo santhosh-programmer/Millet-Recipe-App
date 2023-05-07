@@ -1,17 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:millet_recipe_app/views/profile/reset_profile_page.dart';
+import '../auth/login_page.dart';
+
 
 class ProfilePage extends StatefulWidget {
-  final String userName;
-  final String userEmail;
-  final String userPassword;
-
-  const ProfilePage(
-      {super.key,
-      required this.userName,
-      required this.userEmail,
-      required this.userPassword});
+  const ProfilePage({super.key});
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
@@ -53,7 +47,7 @@ class _ProfilePageState extends State<ProfilePage> {
             child: Column(
               children: [
                 Text(
-                  widget.userName,
+                  userName,
                   style: const TextStyle(
                       fontSize: 25, fontWeight: FontWeight.bold),
                 ),
@@ -61,7 +55,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   height: 10,
                 ),
                 Text(
-                  widget.userEmail,
+                  emailId,
                   style: const TextStyle(
                       fontSize: 20,
                       color: Colors.brown,
@@ -104,9 +98,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => EditProfile(
-                          userName: widget.userName,
-                          userPassword: widget.userPassword),
+                      builder: (context) => EditProfile(),
                     ));
               },
               child: const Text(
