@@ -80,6 +80,10 @@ class _RegisterNowState extends State<RegisterNow> {
                             BorderSide(width: 2, color: appColor2 ?? appColor2),
                       ),
                       hintText: 'Enter your name',
+                      prefixIcon: Icon(
+                        Icons.person,
+                        color: appColor2,
+                      ),
                     ),
                   ),
                   SizedBox(

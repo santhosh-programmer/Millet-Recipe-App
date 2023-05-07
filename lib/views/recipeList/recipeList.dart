@@ -14,6 +14,7 @@ class RecipeList extends StatefulWidget {
 }
 
 class _RecipeListState extends State<RecipeList> {
+  List<Map<String, String>> recipeList2 = recipeList;
   int selectOption = 0;
   final TextEditingController _controller = TextEditingController();
   @override
@@ -59,6 +60,15 @@ class _RecipeListState extends State<RecipeList> {
                           selectOption = index;
                           setState(() {
                             selectOption;
+                            if (selectOption == 0) {
+                              recipeList2 = recipeList;
+                            } else {
+                              recipeList2 = recipeList
+                                  .where((element) =>
+                                      element['category'] ==
+                                      options[selectOption])
+                                  .toList();
+                            }
                           });
                         },
                         child: Container(
@@ -67,15 +77,20 @@ class _RecipeListState extends State<RecipeList> {
                               color: Colors.purple,
                             ),
                             borderRadius: BorderRadius.circular(5),
-                            color: (selectOption == index) ? Colors.purple : const Color.fromARGB(28, 155, 39, 176),
+                            color: (selectOption == index)
+                                ? Colors.purple
+                                : const Color.fromARGB(28, 155, 39, 176),
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 5, horizontal: 15),
                             child: Center(
                               child: Text(
                                 options[index],
                                 style: TextStyle(
-                                  color: (selectOption == index) ? Colors.white : Colors.purple,
+                                  color: (selectOption == index)
+                                      ? Colors.white
+                                      : Colors.purple,
                                 ),
                               ),
                             ),
@@ -94,13 +109,18 @@ class _RecipeListState extends State<RecipeList> {
                   child: MasonryGridView.count(
                     physics: const BouncingScrollPhysics(),
                     crossAxisCount: 2,
-                    itemCount: recipeList.length,
+                    itemCount: recipeList2.length,
                     itemBuilder: (context, index) {
-                      final String recipeName = recipeList[index]['recipeName']!;
+                      final String recipeName =
+                          recipeList2[index]['recipeName']!;
 
                       return InkWell(
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => RecipeDetail(recipeName: recipeName)));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      RecipeDetail(recipeName: recipeName)));
                         },
                         child: Card(
                           elevation: 5,
@@ -110,7 +130,8 @@ class _RecipeListState extends State<RecipeList> {
                               children: [
                                 CachedNetworkImage(
                                   width: double.infinity,
-                                  imageUrl: recipeList[index]['recipeImageUrl']!,
+                                  imageUrl: recipeList2[index]
+                                      ['recipeImageUrl']!,
                                   placeholder: (context, url) {
                                     return const Center(
                                       child: CircularProgressIndicator(
