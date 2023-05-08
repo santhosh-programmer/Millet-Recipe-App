@@ -52,27 +52,34 @@ class _HomePageState extends State<HomePage> {
                     width: 10,
                   ),
                   Container(
-                    width: 100,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.purple,
-                    ),
-                    child: const Center(
-                      child: Text(
-                        'LOGO',
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
+                      width: 40,
+                      height: 40,
+                      child: Image(
+                        image: NetworkImage(
+                            'https://universitykart.b-cdn.net//Content/upload/admin/vj1noeki.t34.jpg'),
+                      )
+                      // decoration: BoxDecoration(
+                      //   borderRadius: BorderRadius.circular(10),
+                      //   color: Colors.purple,
+                      // ),
+                      // child: const Center(
+                      //   child: Text(
+                      //     'LOGO',
+                      //     style: TextStyle(
+                      //       color: Colors.white,
+                      //     ),
+                      //   ),
+                      // ),
                       ),
-                    ),
-                  ),
                   const Expanded(
                     child: SizedBox(),
                   ),
                   IconButton(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const FavouritesPage()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const FavouritesPage()));
                     },
                     icon: const Icon(
                       Icons.favorite,
@@ -113,7 +120,8 @@ class _HomePageState extends State<HomePage> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => RecipeList(milletName: milletName),
+                                builder: (context) =>
+                                    RecipeList(milletName: milletName),
                               ));
                         },
                         child: Card(
@@ -131,7 +139,8 @@ class _HomePageState extends State<HomePage> {
                                 width: double.infinity,
                                 height: 150,
                                 imageUrl: milletImageUrl!,
-                                imageBuilder: (context, imageProvider) => Container(
+                                imageBuilder: (context, imageProvider) =>
+                                    Container(
                                   decoration: BoxDecoration(
                                     //   borderRadius: BorderRadius.circular(10),
                                     image: DecorationImage(
