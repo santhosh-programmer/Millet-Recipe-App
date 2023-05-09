@@ -51,10 +51,10 @@ class _HomePageState extends State<HomePage> {
                   const SizedBox(
                     width: 10,
                   ),
-                  Container(
+                  SizedBox(
                       width: 40,
                       height: 40,
-                      child: Image(
+                      child: const Image(
                         image: NetworkImage(
                             'https://universitykart.b-cdn.net//Content/upload/admin/vj1noeki.t34.jpg'),
                       )
@@ -208,14 +208,14 @@ class _HomePageState extends State<HomePage> {
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text(
+                children: [
+                  const Text(
                     'Welcome,',
                     style: TextStyle(color: Colors.white, fontSize: 28),
                   ),
                   Text(
-                    'Ram Kumar',
-                    style: TextStyle(color: Colors.white, fontSize: 28),
+                    userName,
+                    style: const TextStyle(color: Colors.white, fontSize: 28),
                   ),
                 ],
               ),
