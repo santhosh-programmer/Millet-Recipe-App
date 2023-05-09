@@ -12,35 +12,53 @@ class EditProfile extends StatefulWidget {
 }
 
 class _EditProfileState extends State<EditProfile> {
-  final double profileHeight = 80;
+  final double profileHeight = 60;
+
   final _nameController = TextEditingController();
   final _currentPasswordController = TextEditingController();
   final _newPasswordController = TextEditingController();
+  final _userAboutController = TextEditingController();
 
   var currentPassword = '';
   var newPassword = '';
   var newName = '';
+  var newUserAbout = '';
 
   @override
   void initState() {
     super.initState();
     _nameController.text = userName;
+    _userAboutController.text = profileAbout;
   }
 
   void saveChanges() {
     newName = _nameController.text;
     currentPassword = _currentPasswordController.text;
     newPassword = _newPasswordController.text;
-    if (password == currentPassword) {
+    newUserAbout = _userAboutController.text;
+
+    if (password == currentPassword && newUserAbout != '') {
       setState(() {
         userName = newName;
         password = newPassword;
+        profileAbout = newUserAbout;
       });
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
             builder: (context) => const ProfilePage(),
           ));
+    } else if (newUserAbout == '') {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Padding(
+          padding: const EdgeInsets.all(5.0),
+          child: Text(
+            "The About field can't be empty!",
+            style: TextStyle(color: appColor),
+          ),
+        ),
+        backgroundColor: Colors.black54,
+      ));
     } else {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Padding(
@@ -65,7 +83,7 @@ class _EditProfileState extends State<EditProfile> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              const SizedBox(height: 20.0),
+              const SizedBox(height: 10.0),
               avatarImage(),
               const SizedBox(height: 20.0),
               TextFormField(
@@ -87,7 +105,7 @@ class _EditProfileState extends State<EditProfile> {
                   border: OutlineInputBorder(
                     borderSide: BorderSide(width: 2, color: Colors.black),
                   ),
-                  hintText: 'Enter your Password',
+                  hintText: 'Enter your Name',
                   hintStyle: TextStyle(color: Colors.black),
                   prefixIcon: Icon(
                     Icons.person_outlined,
@@ -103,6 +121,7 @@ class _EditProfileState extends State<EditProfile> {
                     controller: _currentPasswordController,
                     style: const TextStyle(color: Colors.black),
                     keyboardType: TextInputType.visiblePassword,
+                    obscureText: true,
                     decoration: const InputDecoration(
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
@@ -132,7 +151,7 @@ class _EditProfileState extends State<EditProfile> {
                     controller: _newPasswordController,
                     style: const TextStyle(color: Colors.black),
                     keyboardType: TextInputType.visiblePassword,
-                    obscureText: false,
+                    obscureText: true,
                     decoration: const InputDecoration(
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
@@ -154,6 +173,41 @@ class _EditProfileState extends State<EditProfile> {
                       prefixIcon: Icon(
                         Icons.lock_outline_rounded,
                         color: Colors.black,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20.0),
+                  TextFormField(
+                    controller: _userAboutController,
+                    maxLines: 5,
+                    textAlignVertical: TextAlignVertical.top,
+                    style: const TextStyle(color: Colors.black),
+                    keyboardType: TextInputType.visiblePassword,
+                    obscureText: false,
+                    decoration: const InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            width: 2, color: Colors.black), //<-- SEE HERE
+                      ),
+                      disabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            width: 2, color: Colors.black), //<-- SEE HERE
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            width: 4, color: Colors.black), //<-- SEE HERE
+                      ),
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(width: 2, color: Colors.black),
+                      ),
+                      hintText: 'Enter about yourself....',
+                      hintStyle: TextStyle(color: Colors.black),
+                      prefixIcon: Padding(
+                        padding: EdgeInsets.only(bottom: 75.0),
+                        child: Icon(
+                          Icons.account_box_outlined,
+                          color: Colors.black,
+                        ),
                       ),
                     ),
                   ),

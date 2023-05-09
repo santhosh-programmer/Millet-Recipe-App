@@ -40,7 +40,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.arrow_back,
                     color: Colors.white,
                   )),
@@ -87,10 +87,10 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
         Container(
           padding: const EdgeInsets.all(18),
-          child: const Text(
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat',
+          child: Text(
+            profileAbout,
             textAlign: TextAlign.justify,
-            style: TextStyle(height: 1.5, fontSize: 16),
+            style: const TextStyle(height: 1.5, fontSize: 16),
           ),
         ),
         const SizedBox(
@@ -107,10 +107,10 @@ class _ProfilePageState extends State<ProfilePage> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15))),
               onPressed: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => EditProfile(),
+                      builder: (context) => const EditProfile(),
                     ));
               },
               child: const Text(
@@ -127,7 +127,7 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget profileImage() => Container(
         color: Colors.grey,
         child: Image(
-          image: AssetImage('assets/bg.png'),
+          image: const AssetImage('assets/bg.png'),
           width: double.infinity,
           height: coverHeight,
           fit: BoxFit.cover,

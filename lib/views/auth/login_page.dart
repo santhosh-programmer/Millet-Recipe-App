@@ -15,6 +15,8 @@ bool loading = false;
 String userName = 'Ram Kumar';
 String emailId = 'ramkumar@gmail.com';
 String password = 'ram@123';
+String profileAbout =
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute';
 
 class _LoginState extends State<Login> {
   bool p = true;
@@ -60,18 +62,18 @@ class _LoginState extends State<Login> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
-                    Center(
-                      child: Container(
+                    const Center(
+                      child: SizedBox(
                           width: 120,
                           height: 100,
                           child: Image(
                             image: AssetImage('assets/logo.png'),
                           )),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Center(
@@ -313,7 +315,7 @@ class _LoginState extends State<Login> {
                         ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 40,
                     ),
                   ],

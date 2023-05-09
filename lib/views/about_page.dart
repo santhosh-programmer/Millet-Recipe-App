@@ -13,6 +13,7 @@ class _AboutPageState extends State<AboutPage> {
   @override
   Widget build(BuildContext context) {
     final title = coverHeight / 7.5;
+    final backPos = coverHeight / 4.5;
     return Scaffold(
       body: ListView(
         children: [
@@ -21,6 +22,18 @@ class _AboutPageState extends State<AboutPage> {
             alignment: Alignment.center,
             children: [
               Container(child: aboutImage()),
+              Positioned(
+                left: 0,
+                top: backPos - 45,
+                child: IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: const Icon(
+                      Icons.arrow_back,
+                      color: Colors.black,
+                    )),
+              ),
             ],
           ),
           const SizedBox(
