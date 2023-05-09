@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:millet_recipe_app/views/profile/reset_profile_page.dart';
-import '../auth/login_page.dart';
 
+import '../auth/login_page.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -32,6 +32,18 @@ class _ProfilePageState extends State<ProfilePage> {
             Positioned(
               top: top,
               child: avatarImage(),
+            ),
+            Positioned(
+              left: 0,
+              top: title - 45,
+              child: IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: Icon(
+                    Icons.arrow_back,
+                    color: Colors.white,
+                  )),
             ),
             Positioned(
               left: 0,
@@ -114,9 +126,8 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Widget profileImage() => Container(
         color: Colors.grey,
-        child: CachedNetworkImage(
-          imageUrl:
-              "https://media.istockphoto.com/id/1162962131/photo/grains-and-millets-served-on-bowl-in-a-wooden-background.jpg?s=612x612&w=0&k=20&c=bl3xE6yBheomOvNP9C6t5WRwDXmGHDUQOooN9eAF57A=",
+        child: Image(
+          image: AssetImage('assets/bg.png'),
           width: double.infinity,
           height: coverHeight,
           fit: BoxFit.cover,

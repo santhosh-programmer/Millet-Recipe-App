@@ -47,8 +47,7 @@ class _LoginState extends State<Login> {
           height: double.maxFinite,
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: NetworkImage(
-                  "https://media.istockphoto.com/id/1162962131/photo/grains-and-millets-served-on-bowl-in-a-wooden-background.jpg?s=612x612&w=0&k=20&c=bl3xE6yBheomOvNP9C6t5WRwDXmGHDUQOooN9eAF57A="),
+              image: AssetImage("assets/bg.png"),
               fit: BoxFit.cover,
             ),
           ),
@@ -61,6 +60,20 @@ class _LoginState extends State<Login> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Center(
+                      child: Container(
+                          width: 120,
+                          height: 100,
+                          child: Image(
+                            image: AssetImage('assets/logo.png'),
+                          )),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
                     Center(
                       child: FittedBox(
                         child: Text(
@@ -80,6 +93,7 @@ class _LoginState extends State<Login> {
                       onChanged: (newtext) {
                         enteredmail = newtext;
                       },
+                      cursorColor: Colors.white,
                       style: TextStyle(color: appColor),
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
@@ -88,13 +102,16 @@ class _LoginState extends State<Login> {
                             borderSide: BorderSide(width: 2, color: appColor),
                           ),
                           enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(width: 2, color: appColor), //<-- SEE HERE
+                            borderSide: BorderSide(
+                                width: 2, color: appColor), //<-- SEE HERE
                           ),
                           disabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(width: 2, color: appColor), //<-- SEE HERE
+                            borderSide: BorderSide(
+                                width: 2, color: appColor), //<-- SEE HERE
                           ),
                           focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(width: 4, color: appColor), //<-- SEE HERE
+                            borderSide: BorderSide(
+                                width: 4, color: appColor), //<-- SEE HERE
                           ),
                           prefixIcon: Icon(
                             Icons.mail,
@@ -109,18 +126,22 @@ class _LoginState extends State<Login> {
                       onChanged: (newpass) {
                         enteredpass = newpass;
                       },
+                      cursorColor: Colors.white,
                       style: TextStyle(color: appColor),
                       obscureText: p,
                       keyboardType: TextInputType.visiblePassword,
                       decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(width: 2, color: appColor), //<-- SEE HERE
+                          borderSide: BorderSide(
+                              width: 2, color: appColor), //<-- SEE HERE
                         ),
                         disabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(width: 2, color: appColor), //<-- SEE HERE
+                          borderSide: BorderSide(
+                              width: 2, color: appColor), //<-- SEE HERE
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(width: 4, color: appColor), //<-- SEE HERE
+                          borderSide: BorderSide(
+                              width: 4, color: appColor), //<-- SEE HERE
                         ),
                         border: OutlineInputBorder(
                           borderSide: BorderSide(width: 2, color: appColor),
@@ -154,7 +175,10 @@ class _LoginState extends State<Login> {
                     ),
                     TextButton(
                         onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => const MailOtp()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const MailOtp()));
                         },
                         child: Text(
                           'Forgot Password?',
@@ -174,12 +198,17 @@ class _LoginState extends State<Login> {
                         child: !loading
                             ? ElevatedButton(
                                 style: ButtonStyle(
-                                    backgroundColor: MaterialStateProperty.all(appColor), shape: MaterialStateProperty.all(const StadiumBorder())),
+                                    backgroundColor:
+                                        MaterialStateProperty.all(appColor),
+                                    shape: MaterialStateProperty.all(
+                                        const StadiumBorder())),
                                 onPressed: () async {
-                                  bool emailValid =
-                                      RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(enteredmail);
+                                  bool emailValid = RegExp(
+                                          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                      .hasMatch(enteredmail);
                                   if (enteredmail == '' || enteredpass == '') {
-                                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                    ScaffoldMessenger.of(context)
+                                        .showSnackBar(SnackBar(
                                       content: Text(
                                         "Fill all the fields properly",
                                         style: TextStyle(color: appColor),
@@ -197,7 +226,8 @@ class _LoginState extends State<Login> {
                                         setState(() {
                                           loading = false;
                                         });
-                                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(SnackBar(
                                           content: Text(
                                             "Logged in Successfully",
                                             style: TextStyle(color: appColor),
@@ -206,12 +236,15 @@ class _LoginState extends State<Login> {
                                         ));
                                         Navigator.pushAndRemoveUntil(
                                           context,
-                                          MaterialPageRoute(builder: (context) => const HomePage()),
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const HomePage()),
                                           (Route<dynamic> route) => false,
                                         );
                                       } on Exception catch (e) {
                                         print(e);
-                                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(SnackBar(
                                           content: Text(
                                             e.toString(),
                                             style: TextStyle(color: appColor),
@@ -220,7 +253,8 @@ class _LoginState extends State<Login> {
                                         ));
                                       }
                                     } else {
-                                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(SnackBar(
                                         content: Text(
                                           "Enter a valid Mail-Id",
                                           style: TextStyle(color: appColor),
@@ -232,7 +266,8 @@ class _LoginState extends State<Login> {
                                 },
                                 child: const Text(
                                   'Login',
-                                  style: TextStyle(color: Colors.black, fontSize: 25.0),
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 25.0),
                                 ),
                               )
                             : Center(
@@ -260,7 +295,11 @@ class _LoginState extends State<Login> {
                           ),
                           TextButton(
                               onPressed: () {
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => const RegisterNow()));
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const RegisterNow()));
                               },
                               child: Text(
                                 'Register now',
@@ -273,6 +312,9 @@ class _LoginState extends State<Login> {
                               )),
                         ],
                       ),
+                    ),
+                    SizedBox(
+                      height: 40,
                     ),
                   ],
                 ),

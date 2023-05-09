@@ -56,6 +56,7 @@ class _RegisterNowState extends State<RegisterNow> {
                     onChanged: (newtext1) {
                       name = newtext1;
                     },
+                    cursorColor: Colors.grey,
                     style: styling,
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(
@@ -93,6 +94,7 @@ class _RegisterNowState extends State<RegisterNow> {
                     onChanged: (newtext1) {
                       enteredmail1 = newtext1;
                     },
+                    cursorColor: Colors.grey,
                     style: styling,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
@@ -130,6 +132,7 @@ class _RegisterNowState extends State<RegisterNow> {
                     onChanged: (newpass1) {
                       enteredpass1 = newpass1;
                     },
+                    cursorColor: Colors.grey,
                     style: styling,
                     obscureText: p,
                     keyboardType: TextInputType.visiblePassword,
@@ -187,6 +190,7 @@ class _RegisterNowState extends State<RegisterNow> {
                     onChanged: (newpass2) {
                       enteredpass2 = newpass2;
                     },
+                    cursorColor: Colors.grey,
                     style: styling,
                     keyboardType: TextInputType.visiblePassword,
                     obscureText: p1,

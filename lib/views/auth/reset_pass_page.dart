@@ -41,6 +41,7 @@ class _MailOtpState extends State<MailOtp> {
                   onChanged: (newtext2) {
                     enteredmail = newtext2;
                   },
+                  cursorColor: Colors.grey,
                   style: styling,
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(

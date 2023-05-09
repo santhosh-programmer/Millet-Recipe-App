@@ -2,9 +2,9 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:millet_recipe_app/views/favourites/favList.dart';
+import 'package:video_player/video_player.dart';
 
 import '../recipeList/recipeList_constants.dart';
-import 'package:video_player/video_player.dart';
 
 class RecipeDetail extends StatefulWidget {
   RecipeDetail({
@@ -47,7 +47,8 @@ class _RecipeDetailState extends State<RecipeDetail> {
   @override
   void initState() {
     super.initState();
-    _videoPlayerController = VideoPlayerController.network('https://sample-videos.com/video123/mp4/240/big_buck_bunny_240p_1mb.mp4')
+    _videoPlayerController = VideoPlayerController.network(
+        'https://sample-videos.com/video123/mp4/240/big_buck_bunny_240p_1mb.mp4')
       ..initialize().then((_) {
         setState(() {
           _isVideoInitialized = true;
@@ -120,7 +121,8 @@ class _RecipeDetailState extends State<RecipeDetail> {
                             filter: ImageFilter.blur(sigmaX: 1, sigmaY: 1),
                             child: Container(
                               color: Colors.black.withOpacity(0.4),
-                              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 16, vertical: 8),
                               child: Text(
                                 widget.recipeName,
                                 style: const TextStyle(
@@ -168,7 +170,10 @@ class _RecipeDetailState extends State<RecipeDetail> {
                                   // favList.remove({'recipeName': widget.recipeName, 'recipeImageUrl': imageUrl});
                                   favList.removeAt(favIndex);
                                   // isFav = false;
-                                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Removed from Favourites')));
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                          content:
+                                              Text('Removed from Favourites')));
                                   setState(() {
                                     // isFav;
                                     favList;
@@ -182,9 +187,15 @@ class _RecipeDetailState extends State<RecipeDetail> {
                               )
                             : IconButton(
                                 onPressed: () {
-                                  favList.add({'recipeName': widget.recipeName, 'recipeImageUrl': imageUrl});
+                                  favList.add({
+                                    'recipeName': widget.recipeName,
+                                    'recipeImageUrl': imageUrl
+                                  });
                                   // isFav = true;
-                                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Added to  Favourites')));
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                          content:
+                                              Text('Added to  Favourites')));
                                   setState(() {
                                     // isFav;
                                     favList;
@@ -215,7 +226,9 @@ class _RecipeDetailState extends State<RecipeDetail> {
                         );
                       },
                     ),
-                    const SizedBox(height: 20), // Add some spacing between the ingredients and benefits
+                    const SizedBox(
+                        height:
+                            20), // Add some spacing between the ingredients and benefits
                     const Text(
                       'Benefits:',
                       style: TextStyle(
@@ -236,14 +249,17 @@ class _RecipeDetailState extends State<RecipeDetail> {
                 ),
               ),
             ),
-            const Text(
-              'Tutorial Video :',
-              style: TextStyle(
-                fontSize: 18,
-                height: 1.7,
-                fontWeight: FontWeight.bold,
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: const Text(
+                'Tutorial Video :',
+                style: TextStyle(
+                  fontSize: 18,
+                  height: 1.7,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.justify,
               ),
-              textAlign: TextAlign.justify,
             ),
             const SizedBox(
               height: 16,
@@ -260,13 +276,17 @@ class _RecipeDetailState extends State<RecipeDetail> {
                   ),
                   IconButton(
                     icon: Icon(
-                      _videoPlayerController.value.isPlaying ? Icons.pause : Icons.play_arrow,
+                      _videoPlayerController.value.isPlaying
+                          ? Icons.pause
+                          : Icons.play_arrow,
                       size: 50,
                       color: Colors.white,
                     ),
                     onPressed: () {
                       setState(() {
-                        _videoPlayerController.value.isPlaying ? _videoPlayerController.pause() : _videoPlayerController.play();
+                        _videoPlayerController.value.isPlaying
+                            ? _videoPlayerController.pause()
+                            : _videoPlayerController.play();
                       });
                     },
                   ),

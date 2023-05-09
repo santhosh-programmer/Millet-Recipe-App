@@ -31,13 +31,27 @@ class _RecipeListState extends State<RecipeList> {
           padding: const EdgeInsets.fromLTRB(10, 40, 10, 0),
           child: Column(
             children: [
-              Text(
-                widget.milletName,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
+              Row(
+                children: [
+                  IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: Icon(Icons.arrow_back)),
+                  Expanded(
+                    child: Text(
+                      widget.milletName,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 30,
+                  )
+                ],
               ),
               const SizedBox(
                 height: 20,
@@ -63,7 +77,11 @@ class _RecipeListState extends State<RecipeList> {
                             if (selectOption == 0) {
                               recipeList2 = recipeList;
                             } else {
-                              recipeList2 = recipeList.where((element) => element['category'] == options[selectOption]).toList();
+                              recipeList2 = recipeList
+                                  .where((element) =>
+                                      element['category'] ==
+                                      options[selectOption])
+                                  .toList();
                             }
                           });
                         },
@@ -73,15 +91,20 @@ class _RecipeListState extends State<RecipeList> {
                               color: Colors.purple,
                             ),
                             borderRadius: BorderRadius.circular(5),
-                            color: (selectOption == index) ? Colors.purple : const Color.fromARGB(28, 155, 39, 176),
+                            color: (selectOption == index)
+                                ? Colors.purple
+                                : const Color.fromARGB(28, 155, 39, 176),
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 5, horizontal: 15),
                             child: Center(
                               child: Text(
                                 options[index],
                                 style: TextStyle(
-                                  color: (selectOption == index) ? Colors.white : Colors.purple,
+                                  color: (selectOption == index)
+                                      ? Colors.white
+                                      : Colors.purple,
                                 ),
                               ),
                             ),
@@ -102,14 +125,16 @@ class _RecipeListState extends State<RecipeList> {
                     crossAxisCount: 2,
                     itemCount: recipeList2.length,
                     itemBuilder: (context, index) {
-                      final String recipeName = recipeList2[index]['recipeName']!;
+                      final String recipeName =
+                          recipeList2[index]['recipeName']!;
 
                       return InkWell(
                         onTap: () {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => RecipeDetail(recipeName: recipeName),
+                              builder: (context) =>
+                                  RecipeDetail(recipeName: recipeName),
                             ),
                           );
                         },
@@ -121,7 +146,8 @@ class _RecipeListState extends State<RecipeList> {
                               children: [
                                 CachedNetworkImage(
                                   width: double.infinity,
-                                  imageUrl: recipeList2[index]['recipeImageUrl']!,
+                                  imageUrl: recipeList2[index]
+                                      ['recipeImageUrl']!,
                                   placeholder: (context, url) {
                                     return const Center(
                                       child: CircularProgressIndicator(

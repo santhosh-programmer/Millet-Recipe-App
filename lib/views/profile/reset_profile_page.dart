@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:millet_recipe_app/views/profile/profilePage.dart';
+
 import '../auth/login_page.dart';
 
 class EditProfile extends StatefulWidget {
@@ -35,6 +36,11 @@ class _EditProfileState extends State<EditProfile> {
         userName = newName;
         password = newPassword;
       });
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const ProfilePage(),
+          ));
     } else {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Padding(
@@ -47,11 +53,6 @@ class _EditProfileState extends State<EditProfile> {
         backgroundColor: Colors.black54,
       ));
     }
-    Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const ProfilePage(),
-        ));
   }
 
   @override
@@ -173,7 +174,7 @@ class _EditProfileState extends State<EditProfile> {
                             borderRadius: BorderRadius.circular(15))),
                     onPressed: saveChanges,
                     child: const Text(
-                      'Edit Profile',
+                      'Save Changes',
                       style: TextStyle(fontSize: 24),
                     ),
                   ),

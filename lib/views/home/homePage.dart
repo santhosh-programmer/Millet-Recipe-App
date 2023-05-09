@@ -202,8 +202,7 @@ class _HomePageState extends State<HomePage> {
               decoration: const BoxDecoration(
                 color: Colors.blue,
                 image: DecorationImage(
-                  image: NetworkImage(
-                      "https://media.istockphoto.com/id/1162962131/photo/grains-and-millets-served-on-bowl-in-a-wooden-background.jpg?s=612x612&w=0&k=20&c=bl3xE6yBheomOvNP9C6t5WRwDXmGHDUQOooN9eAF57A="),
+                  image: AssetImage("assets/bg.png"),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -215,7 +214,7 @@ class _HomePageState extends State<HomePage> {
                     style: TextStyle(color: Colors.white, fontSize: 28),
                   ),
                   Text(
-                    'Tony Stark',
+                    'Ram Kumar',
                     style: TextStyle(color: Colors.white, fontSize: 28),
                   ),
                 ],

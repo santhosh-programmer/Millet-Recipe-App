@@ -1,8 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:millet_recipe_app/views/recipeDetail/recipeDetails.dart';
 import 'package:millet_recipe_app/views/recipeList/recipeList.dart';
+
 import 'favList.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 
 class FavouritesPage extends StatefulWidget {
   const FavouritesPage({super.key});
@@ -23,12 +24,27 @@ class _FavouritesPageState extends State<FavouritesPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text(
-                'Your Favourites',
-                style: TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
-                ),
+              Row(
+                children: [
+                  IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: Icon(Icons.arrow_back)),
+                  Expanded(
+                    child: const Text(
+                      'Your Favourites',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 30,
+                  )
+                ],
               ),
               const SizedBox(
                 height: 20,
@@ -39,13 +55,15 @@ class _FavouritesPageState extends State<FavouritesPage> {
                   itemCount: favList.length,
                   itemBuilder: (context, index) {
                     final String recipeName = favList[index]['recipeName']!;
-                    final String recipeImageUrl = favList[index]['recipeImageUrl']!;
+                    final String recipeImageUrl =
+                        favList[index]['recipeImageUrl']!;
                     return InkWell(
                       onTap: () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => RecipeDetail(recipeName: recipeName),
+                              builder: (context) =>
+                                  RecipeDetail(recipeName: recipeName),
                             )).then((value) {
                           setState(() {
                             favList;
@@ -53,7 +71,9 @@ class _FavouritesPageState extends State<FavouritesPage> {
                         });
                       },
                       child: Stack(
-                        alignment: (index % 2 == 0) ? Alignment.centerLeft : Alignment.centerRight,
+                        alignment: (index % 2 == 0)
+                            ? Alignment.centerLeft
+                            : Alignment.centerRight,
                         children: [
                           Container(
                             height: 85,
@@ -134,9 +154,11 @@ class _FavouritesPageState extends State<FavouritesPage> {
                                     width: size,
                                     height: size,
                                     imageUrl: recipeImageUrl,
-                                    imageBuilder: (context, imageProvider) => Container(
+                                    imageBuilder: (context, imageProvider) =>
+                                        Container(
                                       decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(size / 2),
+                                        borderRadius:
+                                            BorderRadius.circular(size / 2),
                                         //   borderRadius: BorderRadius.circular(10),
                                         image: DecorationImage(
                                           image: imageProvider,
@@ -171,7 +193,10 @@ class _FavouritesPageState extends State<FavouritesPage> {
                                     child: InkWell(
                                       onTap: () {
                                         favList.removeAt(index);
-                                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Removed from Favourites')));
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(const SnackBar(
+                                                content: Text(
+                                                    'Removed from Favourites')));
                                         setState(() {
                                           favList;
                                         });
@@ -247,7 +272,8 @@ class _FavouritesPageState extends State<FavouritesPage> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const RecipeList(milletName: 'Millet Category'),
+                          builder: (context) =>
+                              const RecipeList(milletName: 'Millet Category'),
                         )).then((value) {
                       setState(() {
                         favList;
